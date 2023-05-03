@@ -1,0 +1,1 @@
+This project was made using Godot 3.5.2 LTS
