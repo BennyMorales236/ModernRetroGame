@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Enemies/Stone Drone/Stone Drone2.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Enemies/Stone Drone/Stone Drone1.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Stone Drone.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Die",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "Move",
+"speed": 1.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+height = 0.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 96.5194
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 13.1529
+
+[sub_resource type="CapsuleShape2D" id=4]
+
+[node name="StoneDrone" type="KinematicBody2D"]
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -17 )
+frames = SubResource( 1 )
+animation = "Move"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -5 )
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 2 )
+
+[node name="DetectionBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox"]
+position = Vector2( 0, -5 )
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 5 )
+
+[node name="AttackHitBox" type="Area2D" parent="." groups=["EnemyHitBox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
+position = Vector2( 0, -17 )
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 3 )
+disabled = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 0, -16 )
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 4 )
+
+[connection signal="area_entered" from="DetectionBox" to="." method="_on_DetectionBox_area_entered"]
+[connection signal="area_exited" from="DetectionBox" to="." method="_on_DetectionBox_area_exited"]
+[connection signal="area_entered" from="AttackHitBox" to="." method="_on_AttackHitBox_area_entered"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]

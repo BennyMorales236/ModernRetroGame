@@ -1,0 +1,5 @@
+Ratio is 16:9
+
+Each part is 30x30 pixels
+
+So the resolution is 480x270

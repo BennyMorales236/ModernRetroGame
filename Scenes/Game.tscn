@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/StoneDrone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Overworld.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/MainCamera.gd" type="Script" id=6]
+
+[node name="Game" type="YSort"]
+script = ExtResource( 1 )
+stone_drone_scene = ExtResource( 3 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="Overworld" parent="." instance=ExtResource( 5 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 720, 780 )
+z_index = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="PlayerStartPosition" type="Position2D" parent="."]
+position = Vector2( 720, 780 )
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2( 720, 780 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 1440
+limit_bottom = 810
+smoothing_speed = 10.0
+editor_draw_limits = true
+script = ExtResource( 6 )
+
+[node name="StoneDronePosition1" type="Position2D" parent="."]
+position = Vector2( 240, 90 )
+
+[node name="StoneDrone" parent="." instance=ExtResource( 3 )]
+position = Vector2( 660, 330 )
+
+[node name="StoneDrone7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 630, 90 )
+
+[node name="StoneDrone4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 150, 720 )
+
+[node name="StoneDrone8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1140, 450 )
+
+[node name="StoneDrone9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1170, 690 )
+
+[node name="StoneDrone10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1110, 60 )
+
+[node name="StoneDrone5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 510, 720 )
+
+[node name="StoneDrone6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 300, 510 )
+
+[node name="StoneDrone2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 930, 240 )
+
+[node name="StoneDrone3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 840, 570 )
+
+[connection signal="HP_changed" from="Player" to="." method="_on_Player_HP_changed"]
+[connection signal="has_died" from="Player" to="." method="_on_Player_has_died"]
