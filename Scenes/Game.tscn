@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Overworld.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/MainCamera.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Pause.gd" type="Script" id=7]
 
 [node name="Game" type="YSort"]
 script = ExtResource( 1 )
@@ -42,6 +43,9 @@ position = Vector2( 240, 90 )
 [node name="StoneDrone" parent="." instance=ExtResource( 3 )]
 position = Vector2( 660, 330 )
 
+[node name="StoneDrone11" parent="." instance=ExtResource( 3 )]
+position = Vector2( 240, 90 )
+
 [node name="StoneDrone7" parent="." instance=ExtResource( 3 )]
 position = Vector2( 630, 90 )
 
@@ -68,6 +72,21 @@ position = Vector2( 930, 240 )
 
 [node name="StoneDrone3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 840, 570 )
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Pause" type="Control" parent="PauseLayer"]
+pause_mode = 2
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 7 )
+
+[node name="Overlay" type="ColorRect" parent="PauseLayer/Pause"]
+margin_right = 480.0
+margin_bottom = 270.0
+color = Color( 0, 0, 0, 0.4 )
 
 [connection signal="HP_changed" from="Player" to="." method="_on_Player_HP_changed"]
 [connection signal="has_died" from="Player" to="." method="_on_Player_has_died"]
