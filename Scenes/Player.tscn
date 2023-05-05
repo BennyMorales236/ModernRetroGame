@@ -109,7 +109,7 @@ base_health = 7
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -14 )
 frames = SubResource( 1 )
-animation = "walk_down"
+animation = "idle_up"
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -3 )

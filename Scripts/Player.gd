@@ -17,9 +17,9 @@ var current_attack = base_attack
 var is_attacking = false
 var is_alive = true
 
-var player_general_direction = "idle_down"
-var walking_direction = "walk_down"
-var attack_direction = "attack_down"
+var player_general_direction = "idle_up"
+var walking_direction = "walk_up"
+var attack_direction = "attack_up"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
